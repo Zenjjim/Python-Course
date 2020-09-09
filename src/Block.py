@@ -4,7 +4,7 @@ import random
 
 class Block(pygame.sprite.Sprite):
 
-    def __init__(self, color, images):
+    def __init__(self, images):
 
         super().__init__()
 
