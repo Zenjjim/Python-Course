@@ -4,6 +4,7 @@ import random
 from CrackHead import CrackHead
 from Player import Player
 from Bullet import Bullet
+from DefinitelyNotWeed import DefinitelyNotWeed
 import os
 
 
@@ -23,6 +24,7 @@ font = pygame.font.Font(None, 36)
 bullet_list = pygame.sprite.Group()
 crackhead_list = pygame.sprite.Group()
 all_sprites_list = pygame.sprite.Group()
+not_a_weed_sprites_list = pygame.sprite.Group()
 
 player = Player(50, 50)
 all_sprites_list.add(player)
@@ -30,7 +32,7 @@ player.rect.y = 370
     
  
 def create_crackheads():
-    for i in range(random.randrange(15)):
+    for i in range(random.randrange(30)):
            
         crackhead = CrackHead()
  
@@ -45,7 +47,16 @@ def create_crackheads():
  
 clock = pygame.time.Clock()
 done = False
- 
+PLANT_COUNT = 5
+for i in range(0,PLANT_COUNT):
+    not_weed = DefinitelyNotWeed(0,SCREEN_HEIGHT/PLANT_COUNT*i)
+
+    not_a_weed_sprites_list.add(not_weed)
+    all_sprites_list.add(not_weed)
+
+
+
+
 while not done:
     if player.health <= 0:
             done = True
@@ -92,7 +103,16 @@ while not done:
     if pygame.sprite.spritecollide(player, crackhead_list,True):
         player.health -= 25
 
+    
+    for plant in not_a_weed_sprites_list:
+
+        plant_hit_list = pygame.sprite.spritecollide(plant, crackhead_list, True)
    
+        if plant_hit_list:
+            not_a_weed_sprites_list.remove(plant)
+            all_sprites_list.remove(plant)
+            player.health -= (100/PLANT_COUNT)
+
     for bullet in bullet_list:
  
         crackhead_hit_list = pygame.sprite.spritecollide(bullet, crackhead_list, True)
