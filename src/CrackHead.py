@@ -3,7 +3,7 @@ import random
 import os
 
 IMAGES = ["crack_head_1.png",  "crack_head_2.png", "crack_head_3.png"]
-CRACKHEAD_IMAGE = pygame.image.load(random.choice(IMAGES))
+CRACKHEAD_IMAGE =  os.path.join("assets", random.choice(IMAGES))
 VELOCITY = 3
 
 class CrackHead(pygame.sprite.Sprite):
