@@ -5,6 +5,7 @@ from Block import Block
 from Player import Player
 from Bullet import Bullet
 from Color import BLACK,BLUE,RED,WHITE
+import os
 
 
 pygame.init()
@@ -14,6 +15,11 @@ screen_height = 600
 
 score = 0
 move = 6
+
+crackHeads = []
+crackHeads.append(pygame.image.load(os.path.join("assets", "crack_head_2.png")))
+crackHeads.append(pygame.image.load(os.path.join("assets", "crack_head_1.png")))
+crackHeads.append(pygame.image.load(os.path.join("assets", "crack_head_3.png")))
 
 screen = pygame.display.set_mode([screen_width, screen_height])
 pygame.display.set_caption('Test')
@@ -31,7 +37,7 @@ player.rect.y = 370
 def create_blocks():
     for i in range(random.randrange(15)):
            
-        block = Block(BLUE)
+        block = Block(BLUE, crackHeads)
  
 
         block.rect.x = screen_width

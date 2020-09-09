@@ -10,8 +10,7 @@ class Player(pygame.sprite.Sprite):
         super().__init__()
  
 
-        self.image = pygame.image.load(os.path.join("assets", "pixel_ship_yellow.png"))
-        self.image = pygame.transform.rotate(self.image, -90)
+        self.image = pygame.image.load(os.path.join("assets", "dude.png"))
         self.health = 100
         self.rect = self.image.get_rect()
         self.rect.x = x
