@@ -15,14 +15,14 @@ class Player(pygame.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
 
-        self.change = {x: 0, y: 0}
+        self.change = {"x": 0, "y": 0}
 
         self.health = START_HEALTH
 
     def move(self, x, y):
-        self.change.x += x
-        self.change.y += y
+        self.change["x"] += x
+        self.change["y"] += y
 
     def update(self):
-        self.rect.x += self.change.x
-        self.rect.y += self.change.y
+        self.rect.x += self.change["x"]
+        self.rect.y += self.change["y"]

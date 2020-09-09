@@ -1,22 +1,22 @@
 
 import pygame
 import random
-from .Block import CrackHeads
-from .Player import Player
-from .Bullet import Bullet
+from CrackHead import CrackHead
+from Player import Player
+from Bullet import Bullet
 import os
 
 
 pygame.init()
  
-screen_width =  900
-screen_height = 600
+SCREEN_WIDTH =  900
+SCREEN_HEIGHT = 600
 
 score = 0
-move = 6
+MOVE = 6
 
 
-screen = pygame.display.set_mode([screen_width, screen_height])
+screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
 pygame.display.set_caption('Test')
 font = pygame.font.Font(None, 36)
  
@@ -35,8 +35,8 @@ def create_crackheads():
         crackhead = CrackHead()
  
 
-        crackhead.rect.x = screen_width
-        crackhead.rect.y = random.randrange(screen_height)
+        crackhead.rect.x = SCREEN_WIDTH
+        crackhead.rect.y = random.randrange(SCREEN_HEIGHT)
  
 
         crackhead_list.add(crackhead)
@@ -60,24 +60,24 @@ while not done:
 
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_a:
-                player.changespeed(-move, 0)
+                player.move(-MOVE, 0)
             elif event.key == pygame.K_d:
-                player.changespeed(move, 0)
+                player.move(MOVE, 0)
             elif event.key == pygame.K_w:
-                player.changespeed(0, -move)
+                player.move(0, -MOVE)
             elif event.key == pygame.K_s:
-                player.changespeed(0, move)
+                player.move(0, MOVE)
  
 
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_a:
-                player.changespeed(move, 0)
+                player.move(MOVE, 0)
             elif event.key == pygame.K_d:
-                player.changespeed(-move, 0)
+                player.move(-MOVE, 0)
             elif event.key == pygame.K_w:
-                player.changespeed(0, move)
+                player.move(0, MOVE)
             elif event.key == pygame.K_s:
-                player.changespeed(0, -move)
+                player.move(0, -MOVE)
         elif event.type == pygame.MOUSEBUTTONDOWN:
         
             bullet = Bullet()
@@ -104,7 +104,7 @@ while not done:
             score += 1
  
      
-        if bullet.rect.x > screen_width:
+        if bullet.rect.x > SCREEN_WIDTH:
             bullet_list.remove(bullet)
             all_sprites_list.remove(bullet)
  
@@ -115,8 +115,8 @@ while not done:
             player.health -= 10
 
 
-    screen.fill(WHITE)
-    text = font.render(f"lives: {player.health}", True, BLACK)
+    screen.fill((0,0,0))
+    text = font.render(f"lives: {player.health}", True, (255,255,255))
     text_rect = text.get_rect()
     text_x = 1
     text_y = 1
