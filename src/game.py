@@ -78,6 +78,10 @@ while not done:
                 player.move(0, -MOVE)
             elif event.key == pygame.K_s:
                 player.move(0, MOVE)
+            elif event.key == pygame.K_SPACE:
+                bullet = Bullet((player.rect.x + player.image.get_width()), (player.rect.y + player.image.get_height()/2))
+                all_sprites_list.add(bullet)
+                bullet_list.add(bullet)
  
 
         elif event.type == pygame.KEYUP:
@@ -89,13 +93,7 @@ while not done:
                 player.move(0, MOVE)
             elif event.key == pygame.K_s:
                 player.move(0, -MOVE)
-        elif event.type == pygame.MOUSEBUTTONDOWN:
         
-            bullet = Bullet()
-            bullet.rect.x = player.rect.x + player.image.get_width()
-            bullet.rect.y = player.rect.y + player.image.get_height()/2
-            all_sprites_list.add(bullet)
-            bullet_list.add(bullet)
  
  
     all_sprites_list.update()
