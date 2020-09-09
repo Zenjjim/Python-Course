@@ -29,4 +29,3 @@ class Player(pygame.sprite.Sprite):
     def update(self): 
         self.rect.x += self.change_x
         self.rect.y += self.change_y
-        # WIN.blit(self.image, [self.rect.x,self.rect.y])

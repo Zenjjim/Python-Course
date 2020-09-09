@@ -1,7 +1,7 @@
 
 import pygame
 import random
-from Block import Block
+from Block import CrackHead
 from Player import Player
 from Bullet import Bullet
 from Color import BLACK,BLUE,RED,WHITE
@@ -16,17 +16,13 @@ screen_height = 600
 score = 0
 move = 6
 
-crackHeads = []
-crackHeads.append(pygame.image.load(os.path.join("assets", "crack_head_2.png")))
-crackHeads.append(pygame.image.load(os.path.join("assets", "crack_head_1.png")))
-crackHeads.append(pygame.image.load(os.path.join("assets", "crack_head_3.png")))
 
 screen = pygame.display.set_mode([screen_width, screen_height])
 pygame.display.set_caption('Test')
 font = pygame.font.Font(None, 36)
  
 bullet_list = pygame.sprite.Group()
-block_list = pygame.sprite.Group()
+crackhead_list = pygame.sprite.Group()
 all_sprites_list = pygame.sprite.Group()
 
 player = Player(50, 50)
@@ -34,18 +30,18 @@ all_sprites_list.add(player)
 player.rect.y = 370
     
  
-def create_blocks():
+def create_crackheads():
     for i in range(random.randrange(15)):
            
-        block = Block(BLUE, crackHeads)
+        crackhead = CrackHead()
  
 
-        block.rect.x = screen_width
-        block.rect.y = random.randrange(screen_height)
+        crackhead.rect.x = screen_width
+        crackhead.rect.y = random.randrange(screen_height)
  
 
-        block_list.add(block)
-        all_sprites_list.add(block)
+        crackhead_list.add(crackhead)
+        all_sprites_list.add(crackhead)
 
  
 clock = pygame.time.Clock()
@@ -55,8 +51,8 @@ while not done:
     if player.health <= 0:
             done = True
             
-    if len(block_list) == 0:
-        create_blocks()
+    if len(crackhead_list) == 0:
+        create_crackheads()
  
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -94,16 +90,16 @@ while not done:
  
     all_sprites_list.update()
     
-    if pygame.sprite.spritecollide(player, block_list,True):
+    if pygame.sprite.spritecollide(player, crackhead_list,True):
         player.health -= 25
 
    
     for bullet in bullet_list:
  
-        block_hit_list = pygame.sprite.spritecollide(bullet, block_list, True)
+        crackhead_hit_list = pygame.sprite.spritecollide(bullet, crackhead_list, True)
  
       
-        for block in block_hit_list:
+        for crackhead in crackhead_hit_list:
             bullet_list.remove(bullet)
             all_sprites_list.remove(bullet)
             score += 1
@@ -113,10 +109,10 @@ while not done:
             bullet_list.remove(bullet)
             all_sprites_list.remove(bullet)
  
-    for block in block_list:
-        if block.rect.x < 0:
-            block_list.remove(block)
-            all_sprites_list.remove(block)
+    for crackhead in crackhead_list:
+        if crackhead.rect.x < 0:
+            crackhead_list.remove(crackhead)
+            all_sprites_list.remove(crackhead)
             player.health -= 10
 
 
