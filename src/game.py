@@ -1,10 +1,9 @@
 
 import pygame
 import random
-from Block import CrackHead
-from Player import Player
-from Bullet import Bullet
-from Color import BLACK,BLUE,RED,WHITE
+from .Block import CrackHeads
+from .Player import Player
+from .Bullet import Bullet
 import os
 
 

@@ -10,7 +10,7 @@ crackHeads.append(pygame.image.load(os.path.join("assets", "crack_head_3.png")))
 class CrackHead(pygame.sprite.Sprite):
 
     def __init__(self):
-
+    
         super().__init__()
 
         self.image = crackHeads[random.randrange(len(crackHeads))]
