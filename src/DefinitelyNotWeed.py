@@ -1,15 +1,16 @@
 import pygame
 import os
 
-IMAGE = os.path.join("assets", "definitely_not_weed.png")
+IMAGE = "definitely_not_weed.png"
+
 
 class DefinitelyNotWeed(pygame.sprite.Sprite):
 
-  def __init__(self,x,y):
+    def __init__(self, x, y):
 
-    super().__init__()
+        super().__init__()
 
-    self.image = pygame.image.load(IMAGE)
-    self.rect = self.image.get_rect() 
-    self.rect.x = x
-    self.rect.y = y - self.rect.h/2
+        self.image = pygame.image.load(os.path.join("assets", IMAGE))
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y - self.rect.h/2
