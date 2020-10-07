@@ -1,14 +1,10 @@
 
 import pygame
 import random
-from BugBunny import BugBunny
-from Bullet import Bullet
+from .models import BugBunny, Bullet
 
 SCREEN_WIDTH = 900
 SCREEN_HEIGHT = 600
-CRACKHEAD_COUNT = 15
-PLANT_COUNT = 6
-HIT_DAMAGE = 5
 
 score = 0
 
