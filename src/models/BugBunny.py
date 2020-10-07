@@ -1,8 +1,6 @@
 import pygame
 import os
-
-SCREEN_WIDTH = 900
-SCREEN_HEIGHT = 600
+import constants
 
 IMAGE = "bug_bunny.png"
 START_HEALTH = 100
@@ -45,7 +43,7 @@ class BugBunny(pygame.sprite.Sprite):
                 self.change["y"] -= MOVE
 
     def update(self):
-        self.rect.x = max(40, min(SCREEN_WIDTH-self.rect.w,
+        self.rect.x = max(40, min(constants.SCREEN_WIDTH-self.rect.w,
                                   self.rect.x + self.change["x"]))
-        self.rect.y = max(0, min(SCREEN_HEIGHT-self.rect.h,
+        self.rect.y = max(0, min(constants.SCREEN_HEIGHT-self.rect.h,
                                  self.rect.y + self.change["y"]))

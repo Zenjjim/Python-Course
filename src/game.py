@@ -1,12 +1,9 @@
 
 import pygame
 import random
-from CrackHead import CrackHead
-from BugBunny import BugBunny
-from Bullet import Bullet
+from models import BugBunny,Bullet,CrackHead
+import constants
 
-SCREEN_WIDTH = 900
-SCREEN_HEIGHT = 600
 CRACKHEAD_COUNT = 15
 HIT_DAMAGE = 5
 
@@ -14,7 +11,7 @@ score = 0
 
 pygame.init()
 
-screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
+screen = pygame.display.set_mode([constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT])
 pygame.display.set_caption('Carrot the Crackhead')
 font = pygame.font.Font(None, 36)
 
@@ -22,7 +19,7 @@ bullet_list = pygame.sprite.Group()
 crackhead_list = pygame.sprite.Group()
 
 bug_bunny_sprite = pygame.sprite.Group()
-bug_bunny = BugBunny(50, SCREEN_HEIGHT/2)
+bug_bunny = BugBunny(50, constants.SCREEN_HEIGHT/2)
 bug_bunny_sprite.add(bug_bunny)
 
 list_of_sprites = [crackhead_list, bullet_list, bug_bunny_sprite]
@@ -69,7 +66,7 @@ while not done:
             crackhead_list.remove(crackhead_hit_list[0])
             bullet_list.remove(bullet)
             score += 1
-        if bullet.rect.x > SCREEN_WIDTH:
+        if bullet.rect.x > constants.SCREEN_WIDTH:
             bullet_list.remove(bullet)
 
     # Crack
