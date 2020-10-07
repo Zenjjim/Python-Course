@@ -1,13 +1,10 @@
 
 import pygame
 import random
-from CrackHead import CrackHead
-from BugBunny import BugBunny
-from Bullet import Bullet
-from DefinitelyNotWeed import DefinitelyNotWeed
+from models import BugBunny, Bullet, CrackHead, DefinitelyNotWeed
+import constants
 
-SCREEN_WIDTH = 900
-SCREEN_HEIGHT = 600
+
 CRACKHEAD_COUNT = 15
 PLANT_COUNT = 6
 HIT_DAMAGE = 5
@@ -16,7 +13,7 @@ score = 0
 
 pygame.init()
 
-screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
+screen = pygame.display.set_mode([constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT])
 pygame.display.set_caption('Carrot the Crackhead')
 font = pygame.font.Font(None, 36)
 
@@ -25,7 +22,7 @@ crackhead_list = pygame.sprite.Group()
 not_a_weed_sprites_list = pygame.sprite.Group()
 
 bug_bunny_sprite = pygame.sprite.Group()
-bug_bunny = BugBunny(50, SCREEN_HEIGHT/2)
+bug_bunny = BugBunny(50, constants.SCREEN_HEIGHT/2)
 bug_bunny_sprite.add(bug_bunny)
 
 list_of_sprites = [crackhead_list,
@@ -34,7 +31,7 @@ list_of_sprites = [crackhead_list,
 # Init not_weed
 for i in range(0, PLANT_COUNT):
     not_weed = DefinitelyNotWeed(
-        0, SCREEN_HEIGHT/PLANT_COUNT*i+(SCREEN_HEIGHT/(PLANT_COUNT*2)))
+        0, constants.SCREEN_HEIGHT/PLANT_COUNT*i+(constants.SCREEN_HEIGHT/(PLANT_COUNT*2)))
     not_a_weed_sprites_list.add(not_weed)
 
 clock = pygame.time.Clock()
@@ -86,7 +83,7 @@ while not done:
             crackhead_list.remove(crackhead_hit_list[0])
             bullet_list.remove(bullet)
             score += 1
-        if bullet.rect.x > SCREEN_WIDTH:
+        if bullet.rect.x > constants.SCREEN_WIDTH:
             bullet_list.remove(bullet)
 
     # Crack
