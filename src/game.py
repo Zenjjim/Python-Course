@@ -16,9 +16,6 @@ font = pygame.font.Font(None, 36)
 
 bug_bunny = BugBunny(50, constants.SCREEN_HEIGHT/2)
 
-
-list_of_sprites = [bug_bunny_sprite]
-
 clock = pygame.time.Clock()
 done = False
 
@@ -35,6 +32,7 @@ while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
+
 
     pygame.display.flip()
     clock.tick(60)
