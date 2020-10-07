@@ -37,10 +37,6 @@ while not done:
         if event.type == pygame.QUIT:
             done = True
 
-    for sprite in list_of_sprites:
-        sprite.update()
-        sprite.draw(screen)
-
     pygame.display.flip()
     clock.tick(60)
 
