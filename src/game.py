@@ -1,22 +1,18 @@
 
 import pygame
 import random
-from CrackHead import CrackHead
-from BugBunny import BugBunny
-from Bullet import Bullet
-from DefinitelyNotWeed import DefinitelyNotWeed
-
-SCREEN_WIDTH = 900
-SCREEN_HEIGHT = 600
-CRACKHEAD_COUNT = 15
-PLANT_COUNT = 6
-HIT_DAMAGE = 5
-
+from models import (
+    BugBunny, 
+    Bullet, 
+    CrackHead, 
+    DefinitelyNotWeed
+)
+import constants
 score = 0
 
 pygame.init()
 
-screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
+screen = pygame.display.set_mode([constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT])
 pygame.display.set_caption('Carrot the Crackhead')
 font = pygame.font.Font(None, 36)
 
@@ -25,16 +21,18 @@ crackhead_list = pygame.sprite.Group()
 not_a_weed_sprites_list = pygame.sprite.Group()
 
 bug_bunny_sprite = pygame.sprite.Group()
-bug_bunny = BugBunny(50, SCREEN_HEIGHT/2)
+bug_bunny = BugBunny(50, constants.SCREEN_HEIGHT/2)
 bug_bunny_sprite.add(bug_bunny)
 
 list_of_sprites = [crackhead_list,
                    not_a_weed_sprites_list, bullet_list, bug_bunny_sprite]
 
 # Init not_weed
-for i in range(0, PLANT_COUNT):
+for i in range(0, constants.PLANT_COUNT):
     not_weed = DefinitelyNotWeed(
-        0, SCREEN_HEIGHT/PLANT_COUNT*i+(SCREEN_HEIGHT/(PLANT_COUNT*2)))
+        0, 
+        constants.SCREEN_HEIGHT/constants.PLANT_COUNT*i
+        +(constants.SCREEN_HEIGHT/(constants.PLANT_COUNT*2)))
     not_a_weed_sprites_list.add(not_weed)
 
 clock = pygame.time.Clock()
@@ -56,7 +54,7 @@ while not done:
 
     # Wave crackheads
     if len(crackhead_list) == 0:
-        for i in range(random.randrange(CRACKHEAD_COUNT)):
+        for i in range(random.randrange(constants.CRACKHEAD_COUNT)):
             crackhead_list.add(CrackHead())
 
     # Key input
@@ -76,7 +74,7 @@ while not done:
             plant, crackhead_list, True)
         if plant_hit_list:
             not_a_weed_sprites_list.remove(plant)
-            bug_bunny.health -= (100/PLANT_COUNT)
+            bug_bunny.health -= (100/constants.PLANT_COUNT)
 
     # Bullet
     for bullet in bullet_list:
@@ -86,18 +84,18 @@ while not done:
             crackhead_list.remove(crackhead_hit_list[0])
             bullet_list.remove(bullet)
             score += 1
-        if bullet.rect.x > SCREEN_WIDTH:
+        if bullet.rect.x > constants.SCREEN_WIDTH:
             bullet_list.remove(bullet)
 
     # Crack
     for crackhead in crackhead_list:
         if crackhead.rect.x < 0:
             crackhead_list.remove(crackhead)
-            bug_bunny.health -= HIT_DAMAGE
+            bug_bunny.health -= constants.HIT_DAMAGE
 
     # Player hit Crackhead
     if pygame.sprite.spritecollide(bug_bunny, crackhead_list, True):
-        bug_bunny.health -= HIT_DAMAGE
+        bug_bunny.health -= constants.HIT_DAMAGE
 
     for sprite in list_of_sprites:
         sprite.update()
