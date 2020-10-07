@@ -8,6 +8,11 @@ from models import (
     DefinitelyNotWeed
 )
 import constants
+
+PLANT_COUNT = 6
+HIT_DAMAGE = 5
+CRACKHEAD_COUNT = 15
+
 score = 0
 
 pygame.init()
@@ -28,11 +33,11 @@ list_of_sprites = [crackhead_list,
                    not_a_weed_sprites_list, bullet_list, bug_bunny_sprite]
 
 # Init not_weed
-for i in range(0, constants.PLANT_COUNT):
+for i in range(0, PLANT_COUNT):
     not_weed = DefinitelyNotWeed(
         0, 
-        constants.SCREEN_HEIGHT/constants.PLANT_COUNT*i
-        +(constants.SCREEN_HEIGHT/(constants.PLANT_COUNT*2)))
+        constants.SCREEN_HEIGHT/PLANT_COUNT*i
+        +(constants.SCREEN_HEIGHT/(PLANT_COUNT*2)))
     not_a_weed_sprites_list.add(not_weed)
 
 clock = pygame.time.Clock()
@@ -54,7 +59,7 @@ while not done:
 
     # Wave crackheads
     if len(crackhead_list) == 0:
-        for i in range(random.randrange(constants.CRACKHEAD_COUNT)):
+        for i in range(random.randrange(CRACKHEAD_COUNT)):
             crackhead_list.add(CrackHead())
 
     # Key input
@@ -74,7 +79,7 @@ while not done:
             plant, crackhead_list, True)
         if plant_hit_list:
             not_a_weed_sprites_list.remove(plant)
-            bug_bunny.health -= (100/constants.PLANT_COUNT)
+            bug_bunny.health -= (100/PLANT_COUNT)
 
     # Bullet
     for bullet in bullet_list:
@@ -91,11 +96,11 @@ while not done:
     for crackhead in crackhead_list:
         if crackhead.rect.x < 0:
             crackhead_list.remove(crackhead)
-            bug_bunny.health -= constants.HIT_DAMAGE
+            bug_bunny.health -= HIT_DAMAGE
 
     # Player hit Crackhead
     if pygame.sprite.spritecollide(bug_bunny, crackhead_list, True):
-        bug_bunny.health -= constants.HIT_DAMAGE
+        bug_bunny.health -= HIT_DAMAGE
 
     for sprite in list_of_sprites:
         sprite.update()

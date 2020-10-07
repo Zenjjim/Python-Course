@@ -3,12 +3,13 @@ import random
 import os
 import constants
 
-
+CRACKHEAD_IMAGES = ["crack_head_1.png",  "crack_head_2.png", "crack_head_3.png"]
+CRACKHEAD_VELOCITY = 3
 
 class CrackHead(pygame.sprite.Sprite):
 
     def __init__(self):
-        CRACKHEAD_IMAGE = os.path.join("assets", random.choice(constants.CRACKHEAD_IMAGES))
+        CRACKHEAD_IMAGE = os.path.join("assets", random.choice(CRACKHEAD_IMAGES))
         super().__init__()
 
         self.image = pygame.image.load(CRACKHEAD_IMAGE)
@@ -18,4 +19,4 @@ class CrackHead(pygame.sprite.Sprite):
                                  random.randint(0, constants.SCREEN_HEIGHT)))
 
     def update(self):
-        self.rect.x -= constants.CRACKHEAD_VELOCITY
+        self.rect.x -= CRACKHEAD_VELOCITY
