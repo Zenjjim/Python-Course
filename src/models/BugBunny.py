@@ -7,8 +7,6 @@ SCREEN_HEIGHT = 600
 IMAGE = "bug_bunny.png"
 START_HEALTH = 100
 
-MOVE = 6
-
 
 class BugBunny(pygame.sprite.Sprite):
 
@@ -19,7 +17,5 @@ class BugBunny(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
-
-        self.change = {"x": 0, "y": 0}
         self.health = START_HEALTH
 
