@@ -16,6 +16,7 @@ font = pygame.font.Font(None, 36)
 
 bug_bunny = BugBunny(50, constants.SCREEN_HEIGHT/2)
 
+
 clock = pygame.time.Clock()
 done = False
 
