@@ -14,7 +14,7 @@ pygame.display.set_caption('Carrot the Crackhead')
 font = pygame.font.Font(None, 36)
 
 
-bug_bunny = BugBunny(50, SCREEN_HEIGHT/2)
+bug_bunny = BugBunny(50, constants.SCREEN_HEIGHT/2)
 bug_bunny_sprite = pygame.sprite.Group()
 bug_bunny_sprite.add(bug_bunny)
 
