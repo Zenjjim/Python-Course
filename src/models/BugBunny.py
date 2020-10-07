@@ -1,13 +1,16 @@
 import pygame
 import os
 
+SCREEN_WIDTH = 900
+SCREEN_HEIGHT = 600
 
-IMAGE = "carrot.png"
-BULLET_SCALE = (50, 40)
-VELOCITY = 5
+IMAGE = "bug_bunny.png"
+START_HEALTH = 100
+
+MOVE = 6
 
 
-class Bullet(pygame.sprite.Sprite):
+class BugBunny(pygame.sprite.Sprite):
 
     def __init__(self, x, y):
         super().__init__()
@@ -17,5 +20,6 @@ class Bullet(pygame.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
 
-    def update(self):
-        self.rect.x += VELOCITY
+        self.change = {"x": 0, "y": 0}
+        self.health = START_HEALTH
+
