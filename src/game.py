@@ -2,22 +2,20 @@
 import pygame
 import random
 from models import BugBunny
+import constants
 
-SCREEN_WIDTH = 900
-SCREEN_HEIGHT = 600
-HIT_DAMAGE = 5
 
 score = 0
 
 pygame.init()
 
-screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
+screen = pygame.display.set_mode([constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT])
 pygame.display.set_caption('Carrot the Crackhead')
 font = pygame.font.Font(None, 36)
 
 
 bug_bunny_sprite = pygame.sprite.Group()
-bug_bunny = BugBunny(50, SCREEN_HEIGHT/2)
+bug_bunny = BugBunny(50, constants.SCREEN_HEIGHT/2)
 bug_bunny_sprite.add(bug_bunny)
 
 list_of_sprites = [bug_bunny_sprite]
